@@ -1,6 +1,6 @@
 import javax.swing.*;
 import java.awt.*;
-
+// key tracker in this class
 public class GameView extends JFrame
 {
     private Game g;

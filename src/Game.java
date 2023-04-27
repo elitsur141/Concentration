@@ -1,3 +1,4 @@
+import java.awt.*;
 import java.util.ArrayList;
 
 public class Game {
@@ -5,10 +6,16 @@ public class Game {
     private Player player1, player2;
     private Grid grid;
     private ArrayList<Card> cards;
+    private final int INTRO_TEXT_X = 20;
 
-    public void instructions()
+
+    public final void instructions(Graphics g)
     {
-
+        // Displays the instructions
+        g.setColor(Color.black);
+        g.setFont(new Font("SERIF", Font.PLAIN, 15));
+        g.drawString("Instructions:", INTRO_TEXT_X, 50);
+        g.drawString("The goal of this game is to roll even sums using 2 6-sided dice.", INTRO_TEXT_X, 70);
     }
     public void playerSetup()
     {
@@ -25,8 +32,7 @@ public class Game {
     // creates players and deck
     public Game()
     {
-        // Do i put this in playGame()?
-        instructions();
+        view = new GameView(this);
         playerSetup();
     }
 
