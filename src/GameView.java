@@ -1,37 +1,86 @@
 import javax.swing.*;
 import java.awt.*;
-// key tracker in this class
-public class GameView extends JFrame
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+
+public class GameView extends JFrame implements KeyListener
 {
-    private Game g;
+    private Game game;
     private Image[] animals;
     private final int WINDOW_WIDTH = 1000;
     private final int WINDOW_HEIGHT = 800;
+    private final int INTRO_TEXT_X = 20;
 
     public GameView(Game game)
     {
-        // assign the animal images and put them in animals array
-        this.g = game;
+        makeAnimalArr();
+        this.game = game;
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.setTitle("Concentration");
         this.setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
         this.setVisible(true);
     }
+
     public void paint(Graphics g) {
-        // Clear the window.
         g.setColor(Color.CYAN);
         g.fillRect(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT);
+        // Displays the instructions
+        g.setColor(Color.black);
+        g.setFont(new Font("SERIF", Font.PLAIN, 15));
+        g.drawString("Instructions:", INTRO_TEXT_X, 50);
+        g.drawString("The goal of this game is to...", INTRO_TEXT_X, 70);
+        game.getGrid().draw(g);
 
-        for (int i = 0; i < 16; i++)
-        {
-            // draw each card
-            //g.getCards().get(i).draw();
-            // move right or down after each card is drawn
-        }
     }
     public Image[] getAnimals()
     {
         return animals;
     }
 
+    @Override
+    public void keyTyped(KeyEvent e) {
+
+    }
+
+    @Override
+    public void keyPressed(KeyEvent e) {
+        // The keyCode lets you know which key was pressed
+        int keyCode = e.getKeyCode();
+
+        if(keyCode == KeyEvent.VK_LEFT)
+        {
+            game.moveCurrentLeft();
+        }
+        else if(keyCode == KeyEvent.VK_RIGHT)
+        {
+            game.moveCurrentRight();
+        }
+        else if(keyCode == KeyEvent.VK_UP)
+        {
+            game.moveCurrentUp();
+        }
+        else if(keyCode == KeyEvent.VK_DOWN)
+        {
+            game.moveCurrentDown();
+        }
+        repaint();
+    }
+
+    @Override
+    public void keyReleased(KeyEvent e) {
+
+    }
+    // Put animal images into an array
+    public void makeAnimalArr()
+    {
+        animals = new Image[8];
+        animals[0] = new ImageIcon("Resources/bird.png").getImage();
+        animals[1] = new ImageIcon("Resources/cow.png").getImage();
+        animals[2] = new ImageIcon("Resources/croc.png").getImage();
+        animals[3] = new ImageIcon("Resources/deer.png").getImage();
+        animals[4] = new ImageIcon("Resources/horse.png").getImage();
+        animals[5] = new ImageIcon("Resources/peng.png").getImage();
+        animals[6] = new ImageIcon("Resources/pig.png").getImage();
+        animals[7] = new ImageIcon("Resources/whale.png").getImage();
+    }
 }

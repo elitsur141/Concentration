@@ -1,18 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="21a3af6a-0c72-4c68-b3dd-c0c6b73680d0" name="Changes" comment="Updated instance variables and methods for each class">
-      <change afterPath="$PROJECT_DIR$/Resources/bird.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Resources/cow.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Resources/croc.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Resources/deer.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Resources/horse.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Resources/peng.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Resources/pig.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Resources/whale.png" afterDir="false" />
+    <list default="true" id="21a3af6a-0c72-4c68-b3dd-c0c6b73680d0" name="Changes" comment="Made the game window show up and added animals images to resources">
+      <change afterPath="$PROJECT_DIR$/Resources/cardBack.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Location.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Card.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Card.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Game.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/GameView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GameView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Grid.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Grid.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Player.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -49,6 +46,20 @@
       <recent name="$PROJECT_DIR$/Resources" />
     </key>
   </component>
+  <component name="RunManager">
+    <configuration name="Game" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Game" />
+      <module name="Concentration" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.Game" />
+      </list>
+    </recent_temporary>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -79,7 +90,14 @@
       <option name="project" value="LOCAL" />
       <updated>1682487192617</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Made the game window show up and added animals images to resources">
+      <created>1682571666675</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1682571666675</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -97,6 +115,7 @@
     <MESSAGE value="Initial Commit" />
     <MESSAGE value="Made classes and started making instance variables, constructors, and methods" />
     <MESSAGE value="Updated instance variables and methods for each class" />
-    <option name="LAST_COMMIT_MESSAGE" value="Updated instance variables and methods for each class" />
+    <MESSAGE value="Made the game window show up and added animals images to resources" />
+    <option name="LAST_COMMIT_MESSAGE" value="Made the game window show up and added animals images to resources" />
   </component>
 </project>

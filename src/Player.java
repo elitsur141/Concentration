@@ -10,7 +10,7 @@ public class Player {
     {
         return name;
     }
-    public int getNumSets()
+    public int numSets()
     {
         return numSets;
     }

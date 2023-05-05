@@ -1,16 +1,25 @@
+import java.awt.*;
+
 public class Card {
-    private String animal;
-    private int x, y;
-    public Card(String animal) {
+    private Image animal;
+    private boolean upsideDown;
+    public Card(Image animal)
+    {
         this.animal = animal;
+        upsideDown = true;
     }
 
-    public String getAnimal()
+    public Image getAnimal()
     {
         return this.animal;
     }
-    public void draw()
+    public boolean isUpsideDown()
     {
-        // for images of the back of the cards, have an image for a highlighted baby blue card and a highlighted yellow card
+        return upsideDown;
     }
+    public void setUpsideDown(boolean ud)
+    {
+        upsideDown = ud;
+    }
+
 }

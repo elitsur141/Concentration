@@ -1,39 +1,83 @@
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Random;
 
 public class Game {
     private GameView view;
     private Player player1, player2;
-    private Grid grid;
+    public static final int NUM_CARDS = 16;
+    public Grid grid;
     private ArrayList<Card> cards;
-    private final int INTRO_TEXT_X = 20;
+    private Object g;
 
-
-    public final void instructions(Graphics g)
+    public Game()
     {
-        // Displays the instructions
-        g.setColor(Color.black);
-        g.setFont(new Font("SERIF", Font.PLAIN, 15));
-        g.drawString("Instructions:", INTRO_TEXT_X, 50);
-        g.drawString("The goal of this game is to roll even sums using 2 6-sided dice.", INTRO_TEXT_X, 70);
+        view = new GameView(this);
+        cardsSetup();
+        grid = new Grid(cards, this, view);
+        playerSetup();
+        view.repaint();
     }
     public void playerSetup()
     {
-
+        player1 = new Player("You");
+        player2 = new Player("Computer");
+    }
+    // Creates the ArrayList of shuffled cards
+    public void cardsSetup()
+    {
+        cards = new ArrayList<Card>();
+        for (int i = 0; i < NUM_CARDS/2; i++)
+        {
+            Image animal = view.getAnimals()[(int) Math.random() * view.getAnimals().length];
+            Card a = new Card(animal);
+            Card b = new Card(animal);
+            cards.add(a);
+            cards.add(b);
+        }
+        shuffle();
+    }
+    // Shuffles the cards (I used my shuffle method from my Card Game)
+    public void shuffle()
+    {
+        for (int i = NUM_CARDS - 1; i >= 0; i--)
+        {
+            int newIdx = (int)(Math.random() * (NUM_CARDS));
+            Collections.swap(cards, i, newIdx);
+        }
+    }
+    // Moves the current card left
+    public void moveCurrentLeft()
+    {
+        grid.moveCurrentLeft();
+    }
+    // Moves the current card right
+    public void moveCurrentRight()
+    {
+        grid.moveCurrentRight();
+    }
+    // Moves the current card up
+    public void moveCurrentUp()
+    {
+        grid.moveCurrentUp();
+    }
+    // Moves the current card down
+    public void moveCurrentDown()
+    {
+        grid.moveCurrentDown();
+    }
+    public Grid getGrid()
+    {
+        return grid;
     }
     public void playGame()
     {
-        Grid grid = new Grid(cards);
+        view.repaint();
     }
     public ArrayList<Card> getCards()
     {
         return cards;
-    }
-    // creates players and deck
-    public Game()
-    {
-        view = new GameView(this);
-        playerSetup();
     }
 
     public static void main(String[] args) {
