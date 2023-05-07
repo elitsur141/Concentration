@@ -9,8 +9,6 @@ public class Game {
     public static final int NUM_CARDS = 16;
     public Grid grid;
     private ArrayList<Card> cards;
-    private Object g;
-
     public Game()
     {
         view = new GameView(this);
@@ -66,6 +64,14 @@ public class Game {
     public void moveCurrentDown()
     {
         grid.moveCurrentDown();
+    }
+    public void setSelected1(Location s)
+    {
+        grid.setSelected1(s);
+    }
+    public void setSelected2(Location s)
+    {
+        grid.setSelected2(s);
     }
     public Grid getGrid()
     {

@@ -18,6 +18,7 @@ public class Grid {
         grid = new Card[4][4];
         cardsLeft = Game.NUM_CARDS;
         cardBack = new ImageIcon("Resources/cardBack.png").getImage();
+        current = new Location(0, 0);
         int idx = 0;
         for (int i = 0; i < 4; i++)
         {
@@ -71,12 +72,23 @@ public class Grid {
         {
             for (int j = 0; j < this.grid[0].length; j++)
             {
+                // Highlights the current card
+                if (current.getRow() == i && current.getCol() == j)
+                {
+                    g.setColor(Color.yellow);
+                    int yellowX = 125 + (current.getCol() * 170);
+                    int yellowY = 115 + (current.getRow() * 150);
+                    int yellowW = 116;
+                    int yellowH = 149;
+                    g.fillRect(yellowX, yellowY, yellowW, yellowH);
+                }
+                // Draws an upside down card
                 if (grid[i][j].isUpsideDown())
                 {
-                    // FIND A WAY TO GET CARD LOCATION
                     g.drawImage(cardBack, x, y, view);
                 }
-                else if (grid[i][j].isUpsideDown() == false)
+                // Draws a card flipped right-side up
+                else if (!grid[i][j].isUpsideDown())
                 {
                     g.drawImage(game.getCards().get(cardsIdx).getAnimal(), x, y, view);
                 }
@@ -127,8 +139,14 @@ public class Grid {
     {
         return selected2;
     }
-    public int getCardsLeft()
+    public void setSelected1(Location s)
     {
-        return cardsLeft;
+        selected1 = s;
+        grid[selected1.getRow()][selected1.getCol()].setUpsideDown(false);
+    }
+    public void setSelected2(Location s)
+    {
+        selected2 = s;
+        grid[selected2.getRow()][selected2.getCol()].setUpsideDown(false);
     }
 }

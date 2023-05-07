@@ -29,17 +29,12 @@ public class GameView extends JFrame implements KeyListener
         g.setFont(new Font("SERIF", Font.PLAIN, 15));
         g.drawString("Instructions:", INTRO_TEXT_X, 50);
         g.drawString("The goal of this game is to...", INTRO_TEXT_X, 70);
-        game.getGrid().draw(g);
+        game.grid.draw(g);
 
     }
     public Image[] getAnimals()
     {
         return animals;
-    }
-
-    @Override
-    public void keyTyped(KeyEvent e) {
-
     }
 
     @Override
@@ -63,12 +58,19 @@ public class GameView extends JFrame implements KeyListener
         {
             game.moveCurrentDown();
         }
+        else if (keyCode == KeyEvent.VK_SPACE)
+        {
+            Location c = game.getGrid().getCurrent();
+            if (game.grid.getSelected1() == null)
+            {
+                game.setSelected1(c);
+            }
+            else
+            {
+                game.setSelected2(c);
+            }
+        }
         repaint();
-    }
-
-    @Override
-    public void keyReleased(KeyEvent e) {
-
     }
     // Put animal images into an array
     public void makeAnimalArr()
@@ -82,5 +84,13 @@ public class GameView extends JFrame implements KeyListener
         animals[5] = new ImageIcon("Resources/peng.png").getImage();
         animals[6] = new ImageIcon("Resources/pig.png").getImage();
         animals[7] = new ImageIcon("Resources/whale.png").getImage();
+    }
+    @Override
+    public void keyReleased(KeyEvent e) {
+
+    }
+    @Override
+    public void keyTyped(KeyEvent e) {
+
     }
 }

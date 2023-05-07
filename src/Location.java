@@ -14,4 +14,12 @@ public class Location
     public int getRow() {
         return row;
     }
+    public void setRow(int r)
+    {
+        row = r;
+    }
+    public void setCol(int c)
+    {
+        col = c;
+    }
 }
