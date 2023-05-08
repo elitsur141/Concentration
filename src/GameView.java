@@ -19,6 +19,7 @@ public class GameView extends JFrame implements KeyListener
         this.setTitle("Concentration");
         this.setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
         this.setVisible(true);
+        addKeyListener(this);
     }
 
     public void paint(Graphics g) {
@@ -30,7 +31,10 @@ public class GameView extends JFrame implements KeyListener
         g.drawString("Instructions:", INTRO_TEXT_X, 50);
         g.drawString("The goal of this game is to...", INTRO_TEXT_X, 70);
         game.grid.draw(g);
+        //if (game.match())
+        //{
 
+        //}
     }
     public Image[] getAnimals()
     {
@@ -41,7 +45,6 @@ public class GameView extends JFrame implements KeyListener
     public void keyPressed(KeyEvent e) {
         // The keyCode lets you know which key was pressed
         int keyCode = e.getKeyCode();
-
         if(keyCode == KeyEvent.VK_LEFT)
         {
             game.moveCurrentLeft();
@@ -60,8 +63,8 @@ public class GameView extends JFrame implements KeyListener
         }
         else if (keyCode == KeyEvent.VK_SPACE)
         {
-            Location c = game.getGrid().getCurrent();
-            if (game.grid.getSelected1() == null)
+            Location c = new Location(game.grid.getCurrent().getRow(), game.grid.getCurrent().getCol());
+            if (game.grid.getSelected1().getRow() == -1)
             {
                 game.setSelected1(c);
             }
@@ -70,7 +73,9 @@ public class GameView extends JFrame implements KeyListener
                 game.setSelected2(c);
             }
         }
+        else if
         repaint();
+        // wait a few seconds to tell user whether or not they found a match
     }
     // Put animal images into an array
     public void makeAnimalArr()

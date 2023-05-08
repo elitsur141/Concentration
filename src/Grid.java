@@ -19,6 +19,8 @@ public class Grid {
         cardsLeft = Game.NUM_CARDS;
         cardBack = new ImageIcon("Resources/cardBack.png").getImage();
         current = new Location(0, 0);
+        selected1 = new Location(-1, -1);
+        selected2 = new Location(-1, -1);
         int idx = 0;
         for (int i = 0; i < 4; i++)
         {
@@ -31,7 +33,7 @@ public class Grid {
     }
     public void moveCurrentLeft()
     {
-        if (current.getCol() >= 0)
+        if (current.getCol() > 0)
         {
             Location c = new Location(current.getRow(), current.getCol() - 1);
             setCurrent(c);
@@ -62,6 +64,7 @@ public class Grid {
             setCurrent(c);
         }
     }
+    // Draws the grid of cards
     public void draw(Graphics g)
     {
         int x = 140;

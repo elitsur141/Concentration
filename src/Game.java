@@ -1,7 +1,5 @@
 import java.awt.*;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Random;
+import java.util.*;
 
 public class Game {
     private GameView view;
@@ -25,14 +23,29 @@ public class Game {
     // Creates the ArrayList of shuffled cards
     public void cardsSetup()
     {
+        Set<Image> usedImages = new HashSet<Image>();
         cards = new ArrayList<Card>();
-        for (int i = 0; i < NUM_CARDS/2; i++)
+        // Gets a random animal image
+        Image animal = view.getAnimals()[(int)(Math.random() * view.getAnimals().length)];
+        // Adds to the set of used animals
+        usedImages.add(animal);
+        // Creates 2 Cards with the animal image and adds both Cards to cards
+        Card a = new Card(animal);
+        Card b = new Card(animal);
+        cards.add(a);
+        cards.add(b);
+        for (int i = 0; i < NUM_CARDS/2 - 1; i++)
         {
-            Image animal = view.getAnimals()[(int) Math.random() * view.getAnimals().length];
-            Card a = new Card(animal);
-            Card b = new Card(animal);
+            animal = view.getAnimals()[(int) (Math.random() * view.getAnimals().length)];
+            while (usedImages.contains(animal))
+            {
+                animal = view.getAnimals()[(int) (Math.random() * view.getAnimals().length)];
+            }
+            a = new Card(animal);
+            b = new Card(animal);
             cards.add(a);
             cards.add(b);
+            usedImages.add(animal);
         }
         shuffle();
     }
@@ -73,12 +86,25 @@ public class Game {
     {
         grid.setSelected2(s);
     }
+    public boolean match()
+    {
+        int row1 = grid.getSelected1().getRow();
+        int col1 = grid.getSelected1().getCol();
+        int row2 = grid.getSelected2().getRow();
+        int col2 = grid.getSelected2().getCol();
+        if (grid.getGrid()[row1][col1].getAnimal() == grid.getGrid()[row2][col2].getAnimal())
+        {
+            return true;
+        }
+        return false;
+    }
     public Grid getGrid()
     {
         return grid;
     }
     public void playGame()
     {
+        // User selects their cards
         view.repaint();
     }
     public ArrayList<Card> getCards()
