@@ -1,3 +1,4 @@
+// Ella Litsur
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
@@ -15,7 +16,6 @@ public class Grid {
     private static final int CARD_WIDTH = 86;
     private static final int CARD_HEIGHT = 120;
 
-
     // Expects ArrayList of shuffled cards, then assigns each card to a spot in the gird
     public Grid(ArrayList<Card> cards, Game g, GameView v)
     {
@@ -28,6 +28,7 @@ public class Grid {
         selected1 = new Location(-1,-1);
         selected2 = new Location(-1,-1);
         int idx = 0;
+        // Sets each location in the grid to be a Card
         for (int i = 0; i < 4; i++)
         {
             for (int j = 0; j < 4; j++)
@@ -79,7 +80,6 @@ public class Grid {
         int x = LEFTMOST_X;
         int y = TOPMOST_Y;
         int cardsIdx = 0;
-        // Draws the cards
         for (int i = 0; i < this.grid.length; i++)
         {
             for (int j = 0; j < this.grid[0].length; j++)
@@ -125,7 +125,7 @@ public class Grid {
             y += CARD_DISTANCE_Y;
         }
     }
-    // If there are no more Cards left in the grid
+    // Returns true if there are no more Cards left in the grid
     public boolean isEmpty()
     {
         if (cardsLeft == 0)
@@ -134,7 +134,7 @@ public class Grid {
         }
         return false;
     }
-    // Sets a Card with a specifc grid Location equal to null
+    // Removes a Card at a specific location
     public void removeCard(int row, int col)
     {
         grid[row][col] = null;

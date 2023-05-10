@@ -1,3 +1,4 @@
+// Ella Litsur
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;
@@ -35,7 +36,7 @@ public class GameView extends JFrame implements KeyListener
     {
         g.setColor(Color.CYAN);
         g.fillRect(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT);
-        // If the game is over
+        // If the game is over draw the end of game screen
         if (game.grid != null && game.grid.isEmpty())
         {
             g.setColor(DARK_GREEN);

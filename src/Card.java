@@ -1,3 +1,4 @@
+// Ella Litsur
 import java.awt.*;
 
 public class Card {
@@ -13,6 +14,7 @@ public class Card {
     {
         return this.animal;
     }
+    // Returns true if th Card is upside down
     public boolean isUpsideDown()
     {
         return upsideDown;

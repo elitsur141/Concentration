@@ -1,3 +1,4 @@
+// Ella Litsur
 import java.awt.*;
 import java.util.*;
 
@@ -139,18 +140,6 @@ public class Game {
     }
     public void playGame()
     {
-        // User selects their cards
-        /*while (!grid.isEmpty())
-        {
-            if (match())
-            {
-                matchAction();
-            }
-            else
-            {
-                notMatchAction();
-            }
-        }*/
         view.repaint();
     }
     public ArrayList<Card> getCards()
