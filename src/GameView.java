@@ -132,7 +132,7 @@ public class GameView extends JFrame implements KeyListener
             {
                 game.matchAction();
             }
-            else
+            else if (game.grid.getSelected1().getRow() != -1 && game.grid.getSelected2().getRow() != -1)
             {
                 game.notMatchAction();
             }
