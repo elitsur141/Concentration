@@ -18,9 +18,9 @@ public class Grid {
         grid = new Card[4][4];
         cardsLeft = Game.NUM_CARDS;
         cardBack = new ImageIcon("Resources/cardBack.png").getImage();
-        current = new Location(0, 0);
-        selected1 = new Location(-1, -1);
-        selected2 = new Location(-1, -1);
+        current = new Location(0,0);
+        selected1 = new Location(-1,-1);
+        selected2 = new Location(-1,-1);
         int idx = 0;
         for (int i = 0; i < 4; i++)
         {
@@ -85,17 +85,23 @@ public class Grid {
                     int yellowH = 149;
                     g.fillRect(yellowX, yellowY, yellowW, yellowH);
                 }
-                // Draws an upside down card
-                if (grid[i][j].isUpsideDown())
+                if (grid[i][j] != null)
                 {
-                    g.drawImage(cardBack, x, y, view);
+                    // Draws an upside down card
+                    if (grid[i][j].isUpsideDown()) {
+                        g.drawImage(cardBack, x, y, view);
+                    }
+                    // Draws a card flipped right-side up
+                    else if (!grid[i][j].isUpsideDown()) {
+                        g.drawImage(game.getCards().get(cardsIdx).getAnimal(), x, y, view);
+                    }
                 }
-                // Draws a card flipped right-side up
-                else if (!grid[i][j].isUpsideDown())
+                // If the card has been removed from the grid then an empty space is drawn
+                else
                 {
-                    g.drawImage(game.getCards().get(cardsIdx).getAnimal(), x, y, view);
+                    g.setColor(Color.cyan);
+                    g.fillRect(x, y,86,120);
                 }
-                cardsIdx++;
                 if (j == grid[0].length - 1)
                 {
                     x = 140;
@@ -104,6 +110,7 @@ public class Grid {
                 {
                     x += 170;
                 }
+                cardsIdx++;
             }
             y += 150;
         }
@@ -145,11 +152,17 @@ public class Grid {
     public void setSelected1(Location s)
     {
         selected1 = s;
-        grid[selected1.getRow()][selected1.getCol()].setUpsideDown(false);
+        if (s.getRow() >= 0)
+        {
+            grid[selected1.getRow()][selected1.getCol()].setUpsideDown(false);
+        }
     }
     public void setSelected2(Location s)
     {
         selected2 = s;
-        grid[selected2.getRow()][selected2.getCol()].setUpsideDown(false);
+        if (s.getRow() >= 0)
+        {
+            grid[selected2.getRow()][selected2.getCol()].setUpsideDown(false);
+        }
     }
 }

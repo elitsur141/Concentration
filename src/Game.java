@@ -18,7 +18,6 @@ public class Game {
     public void playerSetup()
     {
         player1 = new Player("You");
-        player2 = new Player("Computer");
     }
     // Creates the ArrayList of shuffled cards
     public void cardsSetup()
@@ -58,6 +57,10 @@ public class Game {
             Collections.swap(cards, i, newIdx);
         }
     }
+    public Player getPlayer1()
+    {
+        return player1;
+    }
     // Moves the current card left
     public void moveCurrentLeft()
     {
@@ -92,11 +95,44 @@ public class Game {
         int col1 = grid.getSelected1().getCol();
         int row2 = grid.getSelected2().getRow();
         int col2 = grid.getSelected2().getCol();
+        // Return false if 2 Cards are not selected
+        if (row1 < 0 || row2 < 0 || col1 < 0 || col2 < 0)
+        {
+            return false;
+        }
         if (grid.getGrid()[row1][col1].getAnimal() == grid.getGrid()[row2][col2].getAnimal())
         {
             return true;
         }
         return false;
+    }
+    // Sets both selected Cards equal to null and increases user's numSets
+    public void matchAction()
+    {
+        int row1 = grid.getSelected1().getRow();
+        int col1 = grid.getSelected1().getCol();
+        int row2 = grid.getSelected2().getRow();
+        int col2 = grid.getSelected2().getCol();
+        player1.addSet();
+        grid.removeCard(row1, col1);
+        grid.removeCard(row2, col2);
+        if (!grid.isEmpty())
+        {
+            grid.setSelected1(new Location(-1, -1));
+            grid.setSelected2(new Location(-1, -1));
+        }
+    }
+    // Flips over both of the selected cards
+    public void notMatchAction()
+    {
+        int row1 = grid.getSelected1().getRow();
+        int col1 = grid.getSelected1().getCol();
+        int row2 = grid.getSelected2().getRow();
+        int col2 = grid.getSelected2().getCol();
+        grid.getGrid()[row1][col1].setUpsideDown(true);
+        grid.getGrid()[row2][col2].setUpsideDown(true);
+        grid.setSelected1(new Location(-1,-1));
+        grid.setSelected2(new Location(-1,-1));
     }
     public Grid getGrid()
     {
@@ -105,6 +141,17 @@ public class Game {
     public void playGame()
     {
         // User selects their cards
+        /*while (!grid.isEmpty())
+        {
+            if (match())
+            {
+                matchAction();
+            }
+            else
+            {
+                notMatchAction();
+            }
+        }*/
         view.repaint();
     }
     public ArrayList<Card> getCards()
@@ -116,4 +163,6 @@ public class Game {
         Game game = new Game();
         game.playGame();
     }
+
+
 }

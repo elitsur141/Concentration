@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="21a3af6a-0c72-4c68-b3dd-c0c6b73680d0" name="Changes" comment="Made a yellow square appear over the selected card">
+    <list default="true" id="21a3af6a-0c72-4c68-b3dd-c0c6b73680d0" name="Changes" comment="Allows the user to move around the grid and flip over cards that they select">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Game.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/GameView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GameView.java" afterDir="false" />
@@ -107,7 +107,14 @@
       <option name="project" value="LOCAL" />
       <updated>1683490207723</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Allows the user to move around the grid and flip over cards that they select">
+      <created>1683576841384</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1683576841384</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -128,6 +135,7 @@
     <MESSAGE value="Made the game window show up and added animals images to resources" />
     <MESSAGE value="Made the grid of cards appear on the window" />
     <MESSAGE value="Made a yellow square appear over the selected card" />
-    <option name="LAST_COMMIT_MESSAGE" value="Made a yellow square appear over the selected card" />
+    <MESSAGE value="Allows the user to move around the grid and flip over cards that they select" />
+    <option name="LAST_COMMIT_MESSAGE" value="Allows the user to move around the grid and flip over cards that they select" />
   </component>
 </project>
