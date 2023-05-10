@@ -8,6 +8,7 @@ public class GameView extends JFrame implements KeyListener
 {
     private Game game;
     private Image[] animals;
+    private Image party;
     private final int WINDOW_WIDTH = 1000;
     private final int WINDOW_HEIGHT = 800;
     private final int INTRO_TEXT_X = 10;
@@ -21,6 +22,7 @@ public class GameView extends JFrame implements KeyListener
     public GameView(Game game)
     {
         makeAnimalArr();
+        party = new ImageIcon("Resources/party.png").getImage();
         this.game = game;
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.setTitle("Concentration");
@@ -38,7 +40,8 @@ public class GameView extends JFrame implements KeyListener
         {
             g.setColor(DARK_GREEN);
             g.setFont(new Font("SERIF", Font.PLAIN, 45));
-            g.drawString("You found all the sets!", 250, 400);
+            g.drawString("You found all the sets!", 250, 300);
+            g.drawImage(party, 250, 350, this);
         }
         else
         {
