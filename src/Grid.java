@@ -9,6 +9,12 @@ public class Grid {
     private Card[][] grid;
     private Location current, selected1, selected2;
     private int cardsLeft;
+    private static final int LEFTMOST_X = 140;
+    private static final int TOPMOST_Y = 170;
+    private static final int CARD_DISTANCE_Y = 150;
+    private static final int CARD_WIDTH = 86;
+    private static final int CARD_HEIGHT = 120;
+
 
     // Expects ArrayList of shuffled cards, then assigns each card to a spot in the gird
     public Grid(ArrayList<Card> cards, Game g, GameView v)
@@ -31,6 +37,7 @@ public class Grid {
             }
         }
     }
+    // Moves the current Card left
     public void moveCurrentLeft()
     {
         if (current.getCol() > 0)
@@ -39,6 +46,7 @@ public class Grid {
             setCurrent(c);
         }
     }
+    // Moves the current Card right
     public void moveCurrentRight()
     {
         if (current.getCol() < 3)
@@ -47,6 +55,7 @@ public class Grid {
             setCurrent(c);
         }
     }
+    // Moves the current Card up
     public void moveCurrentUp()
     {
         if (current.getRow() > 0)
@@ -55,7 +64,7 @@ public class Grid {
             setCurrent(c);
         }
     }
-
+    // Moves the current Card down
     public void moveCurrentDown()
     {
         if (current.getRow() < 3)
@@ -67,8 +76,8 @@ public class Grid {
     // Draws the grid of cards
     public void draw(Graphics g)
     {
-        int x = 140;
-        int y = 130;
+        int x = LEFTMOST_X;
+        int y = TOPMOST_Y;
         int cardsIdx = 0;
         // Draws the cards
         for (int i = 0; i < this.grid.length; i++)
@@ -76,11 +85,11 @@ public class Grid {
             for (int j = 0; j < this.grid[0].length; j++)
             {
                 // Highlights the current card
-                if (current.getRow() == i && current.getCol() == j)
+                if (i == current.getRow() && j == current.getCol())
                 {
                     g.setColor(Color.yellow);
-                    int yellowX = 125 + (current.getCol() * 170);
-                    int yellowY = 115 + (current.getRow() * 150);
+                    int yellowX = 125 + (current.getCol() * TOPMOST_Y);
+                    int yellowY = 155 + (current.getRow() * CARD_DISTANCE_Y);
                     int yellowW = 116;
                     int yellowH = 149;
                     g.fillRect(yellowX, yellowY, yellowW, yellowH);
@@ -100,21 +109,23 @@ public class Grid {
                 else
                 {
                     g.setColor(Color.cyan);
-                    g.fillRect(x, y,86,120);
+                    g.fillRect(x, y,CARD_WIDTH,CARD_HEIGHT);
                 }
+                // Correctly sets the new x coordinate of the next Card
                 if (j == grid[0].length - 1)
                 {
-                    x = 140;
+                    x = LEFTMOST_X;
                 }
                 else
                 {
-                    x += 170;
+                    x += TOPMOST_Y;
                 }
                 cardsIdx++;
             }
-            y += 150;
+            y += CARD_DISTANCE_Y;
         }
     }
+    // If there are no more Cards left in the grid
     public boolean isEmpty()
     {
         if (cardsLeft == 0)
@@ -123,7 +134,7 @@ public class Grid {
         }
         return false;
     }
-
+    // Sets a Card with a specifc grid Location equal to null
     public void removeCard(int row, int col)
     {
         grid[row][col] = null;

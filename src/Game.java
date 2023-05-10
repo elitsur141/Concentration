@@ -3,7 +3,7 @@ import java.util.*;
 
 public class Game {
     private GameView view;
-    private Player player1, player2;
+    private Player player;
     public static final int NUM_CARDS = 16;
     public Grid grid;
     private ArrayList<Card> cards;
@@ -11,14 +11,11 @@ public class Game {
     {
         view = new GameView(this);
         cardsSetup();
-        grid = new Grid(cards, this, view);
-        playerSetup();
+        grid = new Grid(cards,this, view);
+        player = new Player();
         view.repaint();
     }
-    public void playerSetup()
-    {
-        player1 = new Player("You");
-    }
+
     // Creates the ArrayList of shuffled cards
     public void cardsSetup()
     {
@@ -57,9 +54,9 @@ public class Game {
             Collections.swap(cards, i, newIdx);
         }
     }
-    public Player getPlayer1()
+    public Player getPlayer()
     {
-        return player1;
+        return player;
     }
     // Moves the current card left
     public void moveCurrentLeft()
@@ -113,7 +110,7 @@ public class Game {
         int col1 = grid.getSelected1().getCol();
         int row2 = grid.getSelected2().getRow();
         int col2 = grid.getSelected2().getCol();
-        player1.addSet();
+        player.addSet();
         grid.removeCard(row1, col1);
         grid.removeCard(row2, col2);
         if (!grid.isEmpty())

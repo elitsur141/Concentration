@@ -2,6 +2,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.awt.Color;
 
 public class GameView extends JFrame implements KeyListener
 {
@@ -9,9 +10,13 @@ public class GameView extends JFrame implements KeyListener
     private Image[] animals;
     private final int WINDOW_WIDTH = 1000;
     private final int WINDOW_HEIGHT = 800;
-    private final int INTRO_TEXT_X = 20;
-    private final int MATCH_TEXT_X = 300;
+    private final int INTRO_TEXT_X = 10;
+    private final int INTRO_TEXT_Y = 50;
+    private final int INTRO_TEXT_LINE_DISTANCE = 20;
+    private final int MATCH_TEXT_X = 320;
     private final int MATCH_TEXT_Y = 80;
+    private final int MATCH_TEXT_Y2 = 120;
+    public static final Color DARK_GREEN = new Color(0,140,0);
 
     public GameView(Game game)
     {
@@ -24,43 +29,55 @@ public class GameView extends JFrame implements KeyListener
         addKeyListener(this);
     }
 
-    public void paint(Graphics g) {
+    public void paint(Graphics g)
+    {
         g.setColor(Color.CYAN);
         g.fillRect(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT);
-        // Displays the instructions
-        g.setColor(Color.black);
-        g.setFont(new Font("SERIF", Font.PLAIN, 15));
-        g.drawString("Instructions:", INTRO_TEXT_X, 50);
-        g.drawString("The goal of this game is to...", INTRO_TEXT_X, 70);
-        game.grid.draw(g);
-        g.setColor(Color.black);
-        g.drawString("Number of sets found:", 750, 400);
-        g.drawString(Integer.toString(game.getPlayer1().numSets()), 750, 420);
-        g.setFont(new Font("SERIF", Font.PLAIN, 30));
-        if (game.match())
+        // If the game is over
+        if (game.grid != null && game.grid.isEmpty())
         {
-            g.setColor(Color.GREEN);
-            g.drawString("It's a match!", MATCH_TEXT_X, MATCH_TEXT_Y);
-            g.drawString("Press 'a' to collect your set and continue!", 300, 110);
-            if (game.grid.isEmpty())
-            {
-                g.setColor(Color.CYAN);
-                g.fillRect(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT);
-                g.setColor(Color.GREEN);
-                g.setFont(new Font("SERIF", Font.PLAIN, 40));
-                g.drawString("You found all the sets!", 500, 400);
-            }
+            g.setColor(DARK_GREEN);
+            g.setFont(new Font("SERIF", Font.PLAIN, 45));
+            g.drawString("You found all the sets!", 250, 400);
         }
         else
         {
-            g.setColor(Color.red);
-            if (game.grid.getSelected2().getRow() >= 0)
+            // Displays the instructions
+            g.setColor(Color.black);
+            g.setFont(new Font("SERIF", Font.PLAIN, 15));
+            g.drawString("Instructions:", INTRO_TEXT_X, INTRO_TEXT_Y);
+            g.drawString("Use the arrow keys to move around", INTRO_TEXT_X, getINTRO_TEXT_Y(1));
+            g.drawString("the grid and press space to flip a card", INTRO_TEXT_X, getINTRO_TEXT_Y(2));
+            g.drawString("over. Keep finding sets of identical", INTRO_TEXT_X, getINTRO_TEXT_Y(3));
+            g.drawString("cards until the cards run out!", INTRO_TEXT_X, getINTRO_TEXT_Y(4));
+            // Draws the grid
+            game.grid.draw(g);
+            // Displays the number of sets the user found
+            g.setColor(Color.black);
+            g.setFont(new Font("SERIF", Font.PLAIN, 22));
+            g.drawString("Number of sets found:", 750, 400);
+            g.drawString(Integer.toString(game.getPlayer().numSets()), 850, 430);
+            g.setFont(new Font("SERIF", Font.PLAIN, 30));
+            // Displays if the selected cards are a match
+            if (game.match()) {
+                g.setColor(DARK_GREEN);
+                g.drawString("It's a match!", MATCH_TEXT_X, MATCH_TEXT_Y);
+                g.drawString("Press 'a' to collect your set and continue!", MATCH_TEXT_X, MATCH_TEXT_Y2);
+            }
+            // Displays if the selected cards are not a match
+            else if (game.grid.getSelected2().getRow() >= 0)
             {
+                g.setColor(Color.red);
                 g.drawString("Not a match :(  Try again!", MATCH_TEXT_X, MATCH_TEXT_Y);
-                // prompt the user to press the 'a' key to continue
-                g.drawString("Press 'a' to continue", 300, 110);
+                g.drawString("Press 'a' to continue", MATCH_TEXT_X, MATCH_TEXT_Y2);
             }
         }
+    }
+    // Returns the y value of the current row in the instructions
+    public int getINTRO_TEXT_Y(int row)
+    {
+        int y = INTRO_TEXT_Y;
+        return y + (INTRO_TEXT_LINE_DISTANCE * row);
     }
     public Image[] getAnimals()
     {
@@ -69,7 +86,7 @@ public class GameView extends JFrame implements KeyListener
 
     @Override
     public void keyPressed(KeyEvent e) {
-        // The keyCode lets you know which key was pressed
+        // Responds to the keypad
         int keyCode = e.getKeyCode();
         if(keyCode == KeyEvent.VK_LEFT)
         {

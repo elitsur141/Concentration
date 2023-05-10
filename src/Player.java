@@ -1,14 +1,8 @@
 public class Player {
-    private String name;
     private int numSets;
-    public Player(String theName)
+    public Player()
     {
-        name = theName;
         numSets = 0;
-    }
-    public String getName()
-    {
-        return name;
     }
     public int numSets()
     {
