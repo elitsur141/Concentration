@@ -1,11 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="21a3af6a-0c72-4c68-b3dd-c0c6b73680d0" name="Changes" comment="Created final static variables for magic numbers and removed the Player player2">
-      <change afterPath="$PROJECT_DIR$/Resources/party.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GameView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GameView.java" afterDir="false" />
-    </list>
+    <list default="true" id="21a3af6a-0c72-4c68-b3dd-c0c6b73680d0" name="Changes" comment="Added a party emoji when the game ends" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -127,7 +123,14 @@
       <option name="project" value="LOCAL" />
       <updated>1683743860828</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="Added a party emoji when the game ends">
+      <created>1683744681408</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1683744681408</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -151,6 +154,7 @@
     <MESSAGE value="Allows the user to move around the grid and flip over cards that they select" />
     <MESSAGE value="Identifies if the user found a match or did not find a match, increments the user's score, and removes the cards of a found match" />
     <MESSAGE value="Created final static variables for magic numbers and removed the Player player2" />
-    <option name="LAST_COMMIT_MESSAGE" value="Created final static variables for magic numbers and removed the Player player2" />
+    <MESSAGE value="Added a party emoji when the game ends" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added a party emoji when the game ends" />
   </component>
 </project>

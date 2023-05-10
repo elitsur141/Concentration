@@ -86,6 +86,7 @@ public class Game {
     {
         grid.setSelected2(s);
     }
+    // Returns true if the selected cards are a match and returns false otherwise
     public boolean match()
     {
         int row1 = grid.getSelected1().getRow();
@@ -97,13 +98,14 @@ public class Game {
         {
             return false;
         }
+        // Returns true if the images on both cards are the same
         if (grid.getGrid()[row1][col1].getAnimal() == grid.getGrid()[row2][col2].getAnimal())
         {
             return true;
         }
         return false;
     }
-    // Sets both selected Cards equal to null and increases user's numSets
+    // Removes selected cards from the grid, resets selected cards, increases user's numSets
     public void matchAction()
     {
         int row1 = grid.getSelected1().getRow();
@@ -119,7 +121,7 @@ public class Game {
             grid.setSelected2(new Location(-1, -1));
         }
     }
-    // Flips over both of the selected cards
+    // Flips over both of the selected cards and resets the selected cards
     public void notMatchAction()
     {
         int row1 = grid.getSelected1().getRow();
