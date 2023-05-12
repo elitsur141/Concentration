@@ -17,6 +17,7 @@ public class Grid {
     private static final int CARD_HEIGHT = 120;
 
     // Expects ArrayList of shuffled cards, then assigns each card to a spot in the gird
+    // Sets the locations of the current card and selected cards
     public Grid(ArrayList<Card> cards, Game g, GameView v)
     {
         game = g;
@@ -134,7 +135,7 @@ public class Grid {
         }
         return false;
     }
-    // Removes a Card at a specific location
+    // Removes a Card at a specific location and subtracts from the number of cards
     public void removeCard(int row, int col)
     {
         grid[row][col] = null;

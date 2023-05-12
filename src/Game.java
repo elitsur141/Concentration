@@ -10,6 +10,7 @@ public class Game {
     private ArrayList<Card> cards;
     public Game()
     {
+        // Initializes the window, makes the cards, grid, and player
         view = new GameView(this);
         cardsSetup();
         grid = new Grid(cards,this, view);
@@ -22,24 +23,19 @@ public class Game {
     {
         Set<Image> usedImages = new HashSet<Image>();
         cards = new ArrayList<Card>();
-        // Gets a random animal image
-        Image animal = view.getAnimals()[(int)(Math.random() * view.getAnimals().length)];
-        // Adds to the set of used animals
-        usedImages.add(animal);
-        // Creates 2 Cards with the animal image and adds both Cards to cards
-        Card a = new Card(animal);
-        Card b = new Card(animal);
-        cards.add(a);
-        cards.add(b);
-        for (int i = 0; i < NUM_CARDS/2 - 1; i++)
+        for (int i = 0; i < NUM_CARDS/2; i++)
         {
-            animal = view.getAnimals()[(int) (Math.random() * view.getAnimals().length)];
+            // Selects a random animal image from the array of animal images
+            Image animal = view.getAnimals()[(int) (Math.random() * view.getAnimals().length)];
+            // Makes sure the animal image has not been used yet
             while (usedImages.contains(animal))
             {
                 animal = view.getAnimals()[(int) (Math.random() * view.getAnimals().length)];
             }
-            a = new Card(animal);
-            b = new Card(animal);
+            // Creates 2 new Cards with the random animal image
+            Card a = new Card(animal);
+            Card b = new Card(animal);
+            // Adds both Cards to the ArrayList cards
             cards.add(a);
             cards.add(b);
             usedImages.add(animal);
@@ -106,7 +102,7 @@ public class Game {
         }
         return false;
     }
-    // Removes selected cards from the grid, resets selected cards, increases user's numSets
+    // User found a match -> removes selected cards from the grid, resets selected cards, increases user's numSets
     public void matchAction()
     {
         int row1 = grid.getSelected1().getRow();
@@ -122,7 +118,7 @@ public class Game {
             grid.setSelected2(new Location(-1, -1));
         }
     }
-    // Flips over both of the selected cards and resets the selected cards
+    // User didn't find a match -> flips over both of the selected cards and resets the selected cards
     public void notMatchAction()
     {
         int row1 = grid.getSelected1().getRow();
@@ -134,14 +130,6 @@ public class Game {
         grid.setSelected1(new Location(-1,-1));
         grid.setSelected2(new Location(-1,-1));
     }
-    public Grid getGrid()
-    {
-        return grid;
-    }
-    public void playGame()
-    {
-        view.repaint();
-    }
     public ArrayList<Card> getCards()
     {
         return cards;
@@ -149,7 +137,6 @@ public class Game {
 
     public static void main(String[] args) {
         Game game = new Game();
-        game.playGame();
     }
 
 
