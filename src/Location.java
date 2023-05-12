@@ -1,3 +1,6 @@
+/**
+ * Specific Location of the grid with a row and column
+ */
 // Ella Litsur
 public class Location
 {

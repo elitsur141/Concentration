@@ -90,7 +90,7 @@ public class GameView extends JFrame implements KeyListener
 
     @Override
     public void keyPressed(KeyEvent e) {
-        // Responds to the keypad
+        // Responds to the keyboard input
         int keyCode = e.getKeyCode();
         if(keyCode == KeyEvent.VK_LEFT)
         {
@@ -126,6 +126,8 @@ public class GameView extends JFrame implements KeyListener
                 }
             }
         }
+        // If match found the selected cards are removed and increases the numSets
+        // If match not found, the selected cards are flipped back over
         else if (keyCode == KeyEvent.VK_A)
         {
             if (game.match())
